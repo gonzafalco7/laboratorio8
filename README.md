@@ -23,8 +23,8 @@ Finalmente, para la página de bienvenida, creamos la clase *UserBean* donde pod
 
 ![image](https://github.com/juancanon1725/Laboratorio8/assets/98672541/b18e980f-1a47-48ad-9a18-47991720512a)
 
-Creamos un *welcome.xhtml* que reciba el nombre de la persona
+Creamos un *start.xhtml* que reciba el nombre de la persona
 
-Accedemos a *localhost:8080/welcome-xhtml*
+Accedemos a *localhost:8080/start-xhtml*
 
 Y si le damos al botón, nos redirije al juego.
