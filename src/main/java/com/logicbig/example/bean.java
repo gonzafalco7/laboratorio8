@@ -20,9 +20,9 @@ public class bean {
     private int numGuesses;
     private int totalPrize;
     private String estado;
-    private int penalizacionFalla;
+    private int lossScore;
     private boolean first = true;
-    private ArrayList<Integer> listaIntentos = new ArrayList<>();
+    private ArrayList<Integer> yourGuesses = new ArrayList<>();
 
     public bean() {
         restart();
@@ -60,31 +60,31 @@ public class bean {
         this.estado = estado;
     }
 
-    public int getPenalizacionFalla() {
-        return penalizacionFalla;
+    public int getLossScore() {
+        return lossScore;
     }
 
-    public void setPenalizacionFalla(int penalizacionFalla) {
-        this.penalizacionFalla = penalizacionFalla;
+    public void setLossScore(int lossScore) {
+        this.lossScore = lossScore;
     }
 
-    public ArrayList<Integer> getListaIntentos() {
-        return listaIntentos;
+    public ArrayList<Integer> getYourGuesses() {
+        return yourGuesses;
     }
 
-    public void setListaIntentos(ArrayList<Integer> listaIntentos) {
-        this.listaIntentos = listaIntentos;
+    public void setYourGuesses(ArrayList<Integer> yourGuesses) {
+        this.yourGuesses = yourGuesses;
     }
 
     public void guess(int guessedNumber) {
-        listaIntentos.add(guessedNumber);
+        yourGuesses.add(guessedNumber);
         numGuesses++;
         if (guessedNumber != number) {
-            if (totalPrize > penalizacionFalla) {
-                setTotalPrize(totalPrize - penalizacionFalla);
+            if (totalPrize > lossScore) {
+                setTotalPrize(totalPrize - lossScore);
             } else {
                 setEstado("You lost");
-                totalPrize -= penalizacionFalla;
+                totalPrize -= lossScore;
                 System.out.println(getEstado() + " $" + totalPrize);
             }
         } else {
@@ -96,17 +96,17 @@ public class bean {
     public void restart() {
         setNumber((int) (Math.random() * (10 + 1)));
         setTotalPrize(100000);
-        setPenalizacionFalla(10000);
+        setLossScore(10000);
         setEstado("Game in progress");
         setNumGuesses(0);
-        listaIntentos.clear();
+        yourGuesses.clear();
     }
 
-    public void useDataBase() {
+    public void start() {
         if (first) {
             setTotalPrize(Integer.parseInt(configurationService.getPremio()));
             setNumber((int) (Math.random() * (10 + 1)));
-            setPenalizacionFalla(10000);
+            setLossScore(10000);
             setNumGuesses(0);
             first = false;
         }
